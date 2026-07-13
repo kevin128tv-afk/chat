@@ -22,11 +22,11 @@
 
   <script>
     async function login() {
+      // 버튼을 누르는 순간의 값을 정확하게 가져오도록 함수 내부에 배치 완료!
       const id = document.getElementById('userId').value;
       const password = document.getElementById('userPw').value;
 
       try {
-        // Render 진짜 서버 주소로 다이렉트 요청
         const res = await fetch('https://chat-app-qylu.onrender.com/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -36,7 +36,6 @@
         const data = await res.json();
 
         if (data.success) {
-          // 세션스토리지에 로그인한 유저 이름 임시 저장 후 채팅방으로 이동
           sessionStorage.setItem('username', data.user.name);
           window.location.href = 'chat.html';
         } else {
