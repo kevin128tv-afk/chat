@@ -16,7 +16,6 @@
     #msgInput { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; outline: none; }
     #sendBtn { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 4px; margin-left: 10px; cursor: pointer; }
   </style>
-  <!-- Socket.io 라이브러리 로드 -->
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 </head>
 <body>
@@ -36,18 +35,14 @@
 
     document.getElementById('roomTitle').innerText = `${username}님의 채팅방`;
 
-    // Render 서버 주소로 소켓 직접 연결
     const socket = io('https://chat-app-qylu.onrender.com');
 
-    // 서버에 입장 알림
     socket.emit('join', username);
 
-    // 메시지 수신 처리
     socket.on('message', (data) => {
       const chatBox = document.getElementById('chatBox');
       const msgDiv = document.createElement('div');
       
-      // 내가 보낸 메시지인지 상대방이 보낸 메시지인지 구분하여 클래스 부여
       msgDiv.classList.add('msg');
       if (data.sender === username) {
         msgDiv.classList.add('me');
@@ -60,10 +55,9 @@
       `;
       
       chatBox.appendChild(msgDiv);
-      chatBox.scrollTop = chatBox.scrollHeight; // 스크롤 최하단 이동
+      chatBox.scrollTop = chatBox.scrollHeight;
     });
 
-    // 메시지 전송 함수
     function send() {
       const input = document.getElementById('msgInput');
       if (!input.value.trim()) return;
