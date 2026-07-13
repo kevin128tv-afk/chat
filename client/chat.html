@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"><title>채팅룸</title><link rel="stylesheet" href="style.css"><script src="/socket.io/socket.io.js"></script>
+</head>
+<body class="chat-body">
+    <div class="chat-app-container">
+        <aside class="sidebar">
+            <div class="my-profile"><img id="my-avatar" src="" alt="P"><span id="my-nickname">..</span><button id="btn-logout">로그아웃</button></div>
+            <div class="friend-add-box"><input type="text" id="input-friend-id" placeholder="친구 아이디..."><button id="btn-add-friend">+</button></div>
+            <div class="friends-list-container"><h3>친구 목록</h3><ul id="friends-list"></ul></div>
+        </aside>
+        <main class="chat-area">
+            <div id="chat-blank" class="chat-blank">대화 상대를 선택해 주세요.</div>
+            <div id="chat-window" class="chat-window hide">
+                <header class="chat-header"><img id="target-avatar" src="" alt="P"><span id="target-nickname">..</span></header>
+                <div id="messages-display" class="messages-display"></div>
+                <footer class="chat-footer">
+                    <label for="file-image-send">📁</label><input type="file" id="file-image-send" accept="image/*" class="hide">
+                    <input type="text" id="chat-text-input" placeholder="메시지 입력..."><button id="btn-send-message">전송</button>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="socket.js"></script><script src="chat.js"></script>
+</body>
+</html>
